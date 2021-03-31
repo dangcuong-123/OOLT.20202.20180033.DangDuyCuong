@@ -1,5 +1,5 @@
 package Lab04;
-/*
+
 import java.io.*;
 
 public class Aims {
@@ -39,4 +39,4 @@ public class Aims {
 	}
 
 }
-*/
+
