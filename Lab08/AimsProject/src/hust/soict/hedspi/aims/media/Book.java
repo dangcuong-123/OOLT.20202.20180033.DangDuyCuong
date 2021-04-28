@@ -1,8 +1,5 @@
 package hust.soict.hedspi.aims.media;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Book extends Media{
 	private String title;
@@ -29,6 +26,13 @@ public class Book extends Media{
 	}
 	public Book(int id, String title, String category, float cost) {
 		super(id, title,category,cost);
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+		processContent();
 	}
 	
 	public List<String> getAuthors() {
@@ -62,4 +66,37 @@ public class Book extends Media{
 		return String.join("","Book - ",title," - ",category," - ", authors.toString(),
 				" : ",Float.toString(cost),"$" );
 	}
+	public void processContent() {
+		contentTokens.addAll(Arrays.asList(content.split(" ")));
+		Collections.sort(contentTokens);
+        Iterator<String> iterator = contentTokens.iterator();
+        while(iterator.hasNext()) {
+            String temp = iterator.next();
+            if (!wordFrequency.containsKey(temp)) {
+                wordFrequency.put(temp, 1);
+            }else {
+                int count = wordFrequency.get(temp);
+                count++;
+                wordFrequency.put(temp, count);
+            }
+        }
+	}
+	
+	public String toString() {
+        String string = "";
+        string += "Id: " + super.getId() + "\n";
+        string += "Title: "	+ super.getTitle() + "\n";
+        string += "Category: " + super.getCategory() + "\n";
+        string += "Cost: " + super.getCost()+ "\n";
+        string += "Author: " + getAuthors()+ "\n";
+        string += "Content: " + this.content + "\n"; 
+        string += "Content Length: " + this.contentTokens.size() + "\n";
+        string += "Work frequency \t" + "Word" + "\n";
+        string += "Content Token in sorted order: " + this.contentTokens;
+        for(Map.Entry<String, Integer> e: wordFrequency.entrySet()) {
+            string += e.getKey() + " - "+ e.getValue() + "\n";
+        }
+        return string;
+    }
+	
 }

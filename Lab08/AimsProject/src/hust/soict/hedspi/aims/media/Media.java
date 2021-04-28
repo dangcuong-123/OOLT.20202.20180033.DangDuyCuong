@@ -1,6 +1,6 @@
 package hust.soict.hedspi.aims.media;
 
-public abstract class Media implements Comparable{
+public abstract class Media implements Comparable <Media>{
 	protected String title;
 	protected String category;
 	protected float cost;
@@ -79,12 +79,11 @@ public abstract class Media implements Comparable{
         }
     }
 	
-	public int compareTo(Object obj) {
-		if(obj instanceof Media) {
-			Media media = (Media) obj;
+	public int compareTo(Media media) {
+		if(media instanceof Media) {
 			this.stringCompare(media.getTitle(),this.getTitle());
 		}
 		// obj null thi se nho hon 
-		return -1;
+		return 1;
 	}
 }

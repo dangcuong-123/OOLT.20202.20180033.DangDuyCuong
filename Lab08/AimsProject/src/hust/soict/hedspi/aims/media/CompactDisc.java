@@ -80,7 +80,7 @@ public class CompactDisc extends Media implements Playable{
 	}
 	
 	@Override
-	public int compareTo(Object obj) {
+	public int compareTo(Media obj) {
 		if(obj instanceof CompactDisc) {
 			CompactDisc cd = (CompactDisc) obj;
 			if(cd.tracks.size() > this.tracks.size()) return -1;

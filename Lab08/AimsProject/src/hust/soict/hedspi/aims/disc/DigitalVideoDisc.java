@@ -110,7 +110,7 @@ public class DigitalVideoDisc extends Disc implements Playable{
 	}
 	
 	@Override
-	public int compareTo(Object obj) {
+	public int compareTo(Media obj) {
 		if(obj instanceof DigitalVideoDisc) {
 			DigitalVideoDisc dvd = (DigitalVideoDisc) obj;
 			if(dvd.cost > this.cost) return -1;
